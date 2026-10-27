@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+
+# Apple and JAWS reference documents: publisher terms restrict redistribution,
+# so they stay on this machine only. The manifest marks them "local-only".
+phpbb-accessible-controls/references/snapshots/jaws-*
+phpbb-accessible-controls/references/snapshots/voiceover-*

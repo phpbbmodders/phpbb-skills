@@ -1,0 +1,4 @@
+interface:
+  display_name: "phpBB Development Topics"
+  short_description: "Draft, publish, and track phpBB development topics"
+  default_prompt: "Use $phpbb-development-topics to prepare or update an extension development topic and check for an existing topic first."

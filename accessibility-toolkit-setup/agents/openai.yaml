@@ -1,0 +1,4 @@
+interface:
+  display_name: "Accessibility Toolkit Setup"
+  short_description: "Set up browser and screen-reader accessibility tools"
+  default_prompt: "Use $accessibility-toolkit-setup to prepare isolated accessibility checks and record the tools and coverage available."

@@ -1,0 +1,134 @@
+This file is a complete worked example of a finished validation report.
+
+Read it before writing yours, and copy its syntax exactly. Everything below the
+line is BBCode as it must be produced: no backticks, no asterisks for emphasis,
+no hash headings, no Markdown tables, no Markdown links. Imitate this file, not
+the Markdown of the instructions that pointed you here.
+
+================================================================================
+
+[valdeny]
+In [c]acp/main_module.php[/c]:
+
+[code]
+if ($request->is_set_post('submit'))
+{
+    $this->delete_item($request->variable('item_id', 0));
+    trigger_error('Item was deleted successfully');
+}
+[/code]
+
+This state-changing action has no CSRF protection and no permission check. Any
+administrator can be made to delete an item by visiting a crafted page, and the
+handler never confirms the current user holds [c]a_myext_manage[/c] before acting.
+
+Add [c]add_form_key('myext_acp')[/c] when rendering the form and
+[c]check_form_key('myext_acp')[/c] before the delete, and gate the action with
+[c]$this->auth->acl_get('a_myext_manage')[/c].
+
+The message passed to [c]trigger_error()[/c] is also hard-coded English rather
+than a language key — see the separate finding below.
+[/valdeny]
+
+[hr][/hr]
+
+[valdeny]
+In [c]acp/main_module.php[/c]:
+
+[code]
+    trigger_error('Item was deleted successfully');
+}
+
+$this->template->assign_vars(array(
+    'L_TITLE' => 'Manage My Extension Items',
+[/code]
+
+User-facing text is hard-coded instead of coming from the language system. An
+admin is a user, so ACP strings are subject to the same rule as front-end ones.
+The phpBB coding guidelines require that all displayed text be localised:
+[url=https://area51.phpbb.com/docs/33x/coding-guidelines.html#translation]"No
+hardcoded text, use language variables"[/url].
+
+Define [c]MYEXT_ITEM_DELETED[/c] and [c]ACP_MYEXT_MANAGE_ITEMS[/c] in
+[c]language/en/info_acp_myext.php[/c] and reference the keys instead. The same
+applies to the button captions on lines 88 and 94 and the error string on
+line 71.
+[/valdeny]
+
+[hr][/hr]
+
+[valdeny]
+In [c]controller/main.php[/c]:
+
+[code]
+$sql = 'SELECT * FROM ' . $this->myext_table . "
+    WHERE item_name = '" . $request->variable('name', '') . "'";
+$result = $this->db->sql_query($sql);
+[/code]
+
+Unescaped user input is interpolated directly into an SQL query, which allows SQL
+injection. A crafted [c]name[/c] parameter can terminate the string literal and
+append arbitrary SQL, exposing or modifying any data the board user can reach.
+
+Pass the value through [c]$this->db->sql_escape()[/c], or build the WHERE clause
+with [c]$this->db->sql_build_array()[/c]. The query also selects every column
+where only [c]item_id[/c] and [c]item_name[/c] are used — narrow the column list
+while you are there.
+[/valdeny]
+
+[hr][/hr]
+
+[valinfo]
+In [c]migrations/release_1_0_0.php[/c]:
+
+[code]
+    array('config.add', array('myext_version', '1.0.0')),
+    array('config.add', array('myext_items_per_page', 25)),
+[/code]
+
+The extension version is stored in the config table. phpBB tracks extension
+versions itself, so this is redundant and no later migration removes it with
+[c]config.remove[/c]. It does not affect this validation, but it should be
+dropped in a future release.
+[/valinfo]
+
+[hr][/hr]
+
+[valinfo]
+There are formatting improvements that could be made in a future release —
+inconsistent indentation, trailing whitespace at the ends of several lines, and
+a missing newline at end of file — in: [c]controller/main.php[/c],
+[c]acp/main_module.php[/c], [c]styles/prosilver/template/myext_body.html[/c].
+These do not affect the validation outcome at this time.
+[/valinfo]
+
+[hr][/hr]
+
+[b]Recommendation:[/b] [color=#FF0000][b]Deny[/b][/color]
+Denied for a missing CSRF token and permission check on the ACP delete action,
+hard-coded user-facing text, and an SQL injection in the front-end controller.
+
+================================================================================
+
+Notes on the example above, for your own report:
+
+- Every finding is one [valdeny] or [valinfo] block. The file reference is the
+  first line inside the tags, then the [code] block, then the explanation.
+- [hr][/hr] separates findings, including after the last one, and nothing else
+  appears between them.
+- File paths, identifiers, language keys, function names and config names are all
+  wrapped in [c][/c].
+- The guideline quotation sits inside [url=...][/url] and is text actually read
+  from the fetched document.
+- Repeated occurrences of one issue are named inside a single finding rather than
+  repeated as separate blocks.
+- The formatting note is one block listing the affected files.
+- The recommendation is the last thing, colour-coded, one word, with a single
+  sentence of justification.
+- An Approve instead reads:
+  [b]Recommendation:[/b] [color=#008000][b]Approve[/b][/color]
+- A clean extension's entire report is the line "Validation passed with no
+  findings." followed by that Approve line.
+- Nothing else belongs in the report: no scope header, no statistics, no
+  reference ledger, no surface table, no coverage matrix. Those go in the
+  coverage notes after it.

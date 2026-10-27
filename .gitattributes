@@ -1,0 +1,9 @@
+# Store text files with LF line endings.
+* text=auto eol=lf
+
+# Saved reference documents must keep their exact bytes: verify_references.py
+# checks each one against the SHA-256 in manifest.json.
+phpbb-accessible-controls/references/snapshots/** -text
+
+*.zip binary
+*.png binary

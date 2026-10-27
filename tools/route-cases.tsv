@@ -1,0 +1,25 @@
+# Skill-routing cases for route-test.sh.
+# Columns (tab-separated): case id, expected skill, request text.
+# "Clear" cases name one workflow plainly; "close" cases sit next to a similar skill.
+clear-test-boards	phpbb-test-boards	Spin up a 3.3 test board for my topicclaim extension and run its smoke tests.
+clear-screenshots	phpbb-extension-screenshots	Refresh the README screenshots for the feedlinks extension, board and ACP.
+clear-releases	phpbb-extension-releases	Tag and publish copylinks 1.0.0 on GitHub with the release ZIP.
+clear-adoption	phpbb-extension-adoption	I took over rmcgirr83's contactadmin extension; plan moving it to the phpbbmodders vendor without breaking existing installs.
+clear-cross-version	phpbb-cross-version-compatibility	The newspage extension works on phpBB 3.3 but its template breaks on 4.0 because of Icon(). Fix it for both.
+clear-accessible-controls	phpbb-accessible-controls	The copy-link icon button in my extension has no label for screen readers; fix it.
+clear-export	phpbb-export-verification	Check the HTML archive generated from our forum SQL dump before we publish it.
+clear-langpack	phpbb-language-pack-releases	Build the Danish language pack ZIP for phpBB 3.3.15 and validate it for the CDB.
+clear-docs-translations	phpbb-docs-translations	Update the German PO catalogs in phpbbdocs after the latest English source changes.
+clear-core-bugfixes	phpbb-core-bugfixes	Notification links in phpBB core redirect to the wrong post on master; reproduce and fix with a regression test.
+clear-toolkit	accessibility-toolkit-setup	Set up Playwright with axe and an isolated Orca session so I can test screen reader announcements.
+clear-validation	phpbb-extension-validation	Validate this phpBB extension before CDB submission.
+close-twig-4.0	phpbb-cross-version-compatibility	My extension's ACP page throws a Twig error only on phpBB 4.0.
+close-phpunit-dbs	phpbb-test-boards	Run my extension's PHPUnit tests against MySQL and PostgreSQL.
+close-install-axe	accessibility-toolkit-setup	Install axe in the test environment so I can scan pages.
+close-keyboard-review	phpbb-accessible-controls	Review my extension's ACP delete button for keyboard access.
+close-zip-exclude	phpbb-extension-releases	Package the 1.2.0 ZIP and make sure docs/images isn't included in it.
+close-update-gallery	phpbb-extension-screenshots	Make the dated screenshot gallery for tomorrow's feedlinks update post.
+close-update-post	phpbb-development-topics	Write the phpBB.com forum update post for feedlinks 1.1.0.
+close-new-event	phpbb-event-rfc-to-pr	My extension needs a new template event in viewtopic_body.html; write the request for phpBB.
+close-php-floor	phpbb-php-support-changes	Raise the minimum PHP version to 8.1 across all phpbbmodders extensions.
+close-danish-terms	phpbb-docs-translations	Check the Danish wording in phpbbdocs against the phpBB Danish language pack terminology.

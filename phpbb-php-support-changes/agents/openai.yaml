@@ -1,0 +1,4 @@
+interface:
+  display_name: "phpBB PHP Support Changes"
+  short_description: "Keep PHP requirements, CI, and enablement checks aligned"
+  default_prompt: "Use $phpbb-php-support-changes to update a phpBB extension’s supported PHP versions and verify its requirements, CI, and tests together."

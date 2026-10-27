@@ -1,0 +1,48 @@
+name: Bug report
+description: A skill gives wrong instructions, a check fails, or the wrong skill is chosen.
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Skill or tool
+      options:
+        - accessibility-toolkit-setup
+        - phpbb-accessible-controls
+        - phpbb-core-bugfixes
+        - phpbb-cross-version-compatibility
+        - phpbb-development-topics
+        - phpbb-docs-translations
+        - phpbb-event-rfc-to-pr
+        - phpbb-export-verification
+        - phpbb-extension-adoption
+        - phpbb-extension-releases
+        - phpbb-extension-screenshots
+        - phpbb-extension-validation
+        - phpbb-language-pack-releases
+        - phpbb-php-support-changes
+        - phpbb-test-boards
+        - tools/route-test.sh
+        - tools/check-skills.py
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: The request you gave the agent, what it did, and any command output.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Agent and version (for example `claude --version`), operating system, and for check failures `python3 --version`.
+    validations:
+      required: true
