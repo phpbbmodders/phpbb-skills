@@ -20,6 +20,8 @@ Search the topic-creation memory for the project/repository and purpose before c
 - If no usable record exists, search the relevant forum for an existing current-maintainer development topic. No memory hit does not prove that no topic exists. If lookup is inconclusive, resolve that uncertainty before creating a duplicate.
 - For an adopted extension, distinguish the previous maintainer's historical topic from the current-maintainer development topic. When the user requests a new maintainer topic, leave the historical topic untouched. Describe the actual maintenance relationship accurately; do not call an adopted project a fork without evidence.
 
+An extension can have a current-maintainer development topic on more than one forum, such as the maintainers' own board and phpBB.com. Check each forum the project announces on, and update every one of its topics in the same way.
+
 Use a verified existing current-maintainer topic for updates. Do not open a new topic for each release. Keep extension-specific names, IDs, URLs, ownership history, and created-topic records in project records or the configured persistent memory, not hard-coded into this reusable skill.
 
 ## Announcement means the development topic's first post
@@ -35,6 +37,14 @@ Keep two `.bbcode.txt` files in the release-drafts directory, `repo-releases/<gi
 - **Announcement:** the complete forum-topic first post reflecting the latest version, current maintainers, real requirements, download, source, relevant documentation/screenshots, and the required Community section below. The BBCode file is the canonical draft; the announcement itself belongs in the forum topic.
 - **Update:** a self-contained release-update reply with the actual version, changes, and download/release link. Match the established update format rather than copying the whole announcement.
 
+### Update screenshot gallery
+
+Every update post ends with a screenshot gallery of what changed in that update. Prepare it in the extension repository together with the update draft, not after posting: a `docs/update/YYYY-MM-DD/` folder with two or three screenshots of the recent changes and its own captioned `README.md`, as described in `docs/forum-update-posts.md` in [phpbb-release-tools](https://github.com/phpbbmodders/phpbb-release-tools) and the `phpbb-extension-screenshots` skill. The update post shows those images with `[img]` and links to the dated `README.md`; a link to the full screenshot gallery may be added but does not replace it. Point the `[img]` URLs at the commit that added the gallery (`raw.githubusercontent.com/OWNER/REPO/<commit>/docs/update/...`) rather than a branch, so the post keeps showing the same images if later commits change or move them. That commit must be pushed before the post goes up, so the images load. If an update has nothing visible to show, ask the user before posting it without a gallery.
+
+### One draft, several forums
+
+When the same update goes to more than one forum, reread the draft for each one. Change only wording that would be wrong there, such as "in this topic" for something that happened on another forum, and show the user each changed line for approval.
+
 Use stock phpBB BBCode and the supported `[c]` inline-code tag. Validate tag balancing, links, and claims against current source and verified releases. Do not claim an unpublished release is available. Present drafts in four-backtick fences when displaying their complete text in chat.
 
 ### Required Community section
@@ -48,7 +58,7 @@ Always include the phpBB Modders forum and Discord links in every forum announce
 
 Check that both destinations and their links survive the rendered preview before posting. Follow a newer user-supplied community destination if the user changes these links. Do not automatically add community promotion to an ordinary CDB support reply or post an announcement without the required wording approval.
 
-Follow the user's current attribution/disclosure rules. Obtain approval for the complete public wording, including its closing line, before posting or editing. Retain approval already given for unchanged text; a maintainer correction must carry through the draft and actual post. Never infer permission to send from a release publication alone.
+Follow the user's current attribution/disclosure rules. Before drafting, look them up in the agent's persistent memory and instructions for each forum the post will go to, since they can differ between forums and between first posts and replies (for example, a closing note naming the AI assistant that wrote a reply), and apply them to every post written for the user. Obtain approval for the complete public wording, including its closing line, before posting or editing. Retain approval already given for unchanged text; a maintainer correction must carry through the draft and actual post. Never infer permission to send from a release publication alone.
 
 ## Create a new topic
 
@@ -64,9 +74,9 @@ Only after duplicate checks and posting authorization:
 
 For the verified current-maintainer development topic:
 
-1. Replace its first post with the latest approved complete announcement.
+1. Replace its first post with the latest approved complete announcement. Open the edit form from that post's own ID and check its author first: a moderator or team account can edit other members' posts, so a wrong post ID would overwrite someone else's text.
 2. Post the approved update as a **new reply in that same topic**.
-3. Verify both live results and provide their direct URLs in chat. Do not create a separate update topic.
+3. Verify both live results, including that the update's gallery images load, and provide their direct URLs in chat. Do not create a separate update topic.
 
 If only one action succeeds, report it precisely. Check the live topic before retrying to avoid duplicate replies.
 
