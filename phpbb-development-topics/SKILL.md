@@ -41,6 +41,10 @@ Keep two `.bbcode.txt` files in the release-drafts directory, `repo-releases/<gi
 
 Every update post ends with a screenshot gallery of what changed in that update. Prepare it in the extension repository together with the update draft, not after posting: a `docs/update/YYYY-MM-DD/` folder with two or three screenshots of the recent changes and its own captioned `README.md`, as described in `docs/forum-update-posts.md` in [phpbb-release-tools](https://github.com/phpbbmodders/phpbb-release-tools) and the `phpbb-extension-screenshots` skill. The update post shows those images with `[img]` and links to the dated `README.md`; a link to the full screenshot gallery may be added but does not replace it. Point the `[img]` URLs at the commit that added the gallery (`raw.githubusercontent.com/OWNER/REPO/<commit>/docs/update/...`) rather than a branch, so the post keeps showing the same images if later commits change or move them. That commit must be pushed before the post goes up, so the images load. If an update has nothing visible to show, ask the user before posting it without a gallery.
 
+### AI disclosure in both posts
+
+The announcement and every update post each carry an **AI Disclosure** section, in the same heading style as the post's other sections. In an update, it covers only that update: say which AI assistant did which of its changes, testing, screenshots and post wording, named plainly ("Claude wrote…", "Codex tested…"). Check the commits or pull requests before crediting an assistant; a change with no AI co-author or note is not credited to one. Put it after the development-build notice and before the Thanks and License sections. It does not replace a forum's own closing note when the user's rules ask for one.
+
 ### One draft, several forums
 
 When the same update goes to more than one forum, reread the draft for each one. Change only wording that would be wrong there, such as "in this topic" for something that happened on another forum, and show the user each changed line for approval.
