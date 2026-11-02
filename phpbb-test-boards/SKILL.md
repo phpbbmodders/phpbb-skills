@@ -19,7 +19,9 @@ A reset must target a confirmed disposable board. Before removing a board direct
 
 Use committed `smoke_test.py`, `feature_checks.py`, and `run-unit-tests.sh` where relevant. Inspect their current interfaces and dependency installation options. The unit-test runner manages its own fresh test copies and compatible phpBB/PHPUnit checkout; that is distinct from manually copying an interactive board. Preserve a required `tests/functional/` directory when the framework enumerates it.
 
-Provision supported database cases rather than calling a SQLite pass universal. Run guest/admin routes, real ACP/MCP/UCP actions, cron, permissions, and disable/purge/enable lifecycle cases that the change affects. Add reusable feature checks to the committed harness when appropriate. Do not let a green lint/EPV run stand in for runtime evidence.
+Provision supported database cases rather than calling a SQLite pass universal: SQLite, MySQL, MariaDB, PostgreSQL and MSSQL, in disposable containers bound to 127.0.0.1 and removed afterwards. Skip Oracle, which phpBB is dropping, unless the user asks for it.
+
+The SQL Server image only starts with `ACCEPT_EULA=Y`, which accepts Microsoft's SQL Server Developer licence. That acceptance is the user's decision: check the agent's persistent memory for a recorded approval covering local disposable test containers. If there is one, use it without asking again; if not, ask once, and record the answer in memory when the user approves. Never set it without either. The same applies to pulling a database image that is not cached yet. Run guest/admin routes, real ACP/MCP/UCP actions, cron, permissions, and disable/purge/enable lifecycle cases that the change affects. Add reusable feature checks to the committed harness when appropriate. Do not let a green lint/EPV run stand in for runtime evidence.
 
 Purge through seed-forum or the correct board owner when CLI cannot remove web-owned cache. For `php -S`, disable opcache in the disposable test runtime. Empty pages may hide PHP fatals: inspect response bodies and logs before diagnosing flakiness. Wait for phpBB's form timing/CSRF requirements before submitting browser forms.
 
