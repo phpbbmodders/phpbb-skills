@@ -17,7 +17,7 @@ A reset must target a confirmed disposable board. Before removing a board direct
 
 ## Run the actual checks
 
-Test every code change on a running board before opening its pull request, not after merging it. Lint, EPV and a standalone call of the changed function do not count as that test. If the agent's sandbox blocks a step the board needs (sudo for bind mounts, Docker, a local port), run that step outside the sandbox with the user's approval. If the host itself refuses it, use another committed route that works there and say which one. Never report the board test as skipped because setup was inconvenient.
+Test every code change on a running board before opening its pull request, not after merging it. Lint, EPV and a standalone call of the changed function do not count as that test. seed-forum needs sudo for its bind mounts and nginx sites. Some agent runtimes cannot use sudo at all: Claude Code sets the kernel's no-new-privileges flag (`NoNewPrivs: 1` in `/proc/self/status`), even with its sandbox off. There, run the sudo steps (`--reset`, `--mount`, `--remount`, `--unmount`, `--purge-cache`) in the user's own terminal, which the agent can drive when the app offers that, and read the output from it. Do not build a sudo-free workaround. Never report the board test as skipped because setup was inconvenient.
 
 Use committed `smoke_test.py`, `feature_checks.py`, and `run-unit-tests.sh` where relevant. Inspect their current interfaces and dependency installation options. The unit-test runner manages its own fresh test copies and compatible phpBB/PHPUnit checkout; that is distinct from manually copying an interactive board. Preserve a required `tests/functional/` directory when the framework enumerates it.
 
