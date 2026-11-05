@@ -15,4 +15,4 @@ Test both fresh installation and upgrade from a genuine old release with nondefa
 
 Test dependency order separately: disable hard-dependent extensions before their old provider so the container does not retain dangling service references; enable the new provider and then dependents. Verify optional integrations and event/service names too. A provider-only upgrade test does not prove the dependent chain works.
 
-Run static validation and the relevant runtime/database matrix. For public adoption replies or a new current-maintainer development topic, use the development-topics workflow and verified project records; do not revive a historical maintainer's topic as a substitute.
+Run static validation and the relevant runtime/database matrix before opening the pull request, following the [phpbb-test-boards](../phpbb-test-boards/SKILL.md) workflow. For public adoption replies or a new current-maintainer development topic, use the development-topics workflow and verified project records; do not revive a historical maintainer's topic as a substitute.
