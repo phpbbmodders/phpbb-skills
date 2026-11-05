@@ -9,6 +9,8 @@ Verify the reported trigger against current target-branch source and a minimal r
 
 Record relevant branch differences and existing behavior. For persisted notification or configuration data, test both newly created and legacy records; new optional fields should not break older serialized data. Preserve identity/deduplication, parent IDs, forum/read permission resolution and unrelated notification types unless changing them is required.
 
+Before opening the PR, reproduce the bug on a running board of each target branch and confirm the fix there, following the [phpbb-test-boards](../phpbb-test-boards/SKILL.md) workflow. A passing unit test or lint run does not replace that check.
+
 Write focused regression coverage that fails on the original behavior and exercises the real phpBB class lifecycle. Test the supported PHP/database combinations required by the affected component. When a helper API differs between 3.3.x and master, implement the branch-specific fix instead of assuming a clean cherry-pick proves compatibility.
 
 If forward application conflicts, inspect why and prepare separate branch work where appropriate. Do not weaken ACLs, change schema, or broaden templates to avoid understanding a narrow route/identity bug. Inspect actual runtime redirects as well as generated board/email URLs when links are involved.

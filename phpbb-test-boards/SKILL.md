@@ -17,6 +17,8 @@ A reset must target a confirmed disposable board. Before removing a board direct
 
 ## Run the actual checks
 
+Test every code change on a running board before opening its pull request, not after merging it. Lint, EPV and a standalone call of the changed function do not count as that test. seed-forum needs sudo for its bind mounts and nginx sites. Some agent runtimes cannot use sudo at all: the Claude desktop app sets the kernel's no-new-privileges flag (`NoNewPrivs: 1` in `/proc/self/status`) on everything it starts, its own terminal panel included, even with the sandbox off. There, give the user the exact command for each sudo step (`--reset`, `--mount`, `--remount`, `--unmount`, `--purge-cache`) to run in a terminal outside the app, then continue the checks that need no sudo. Do not build a sudo-free workaround. Never report the board test as skipped because setup was inconvenient.
+
 Use committed `smoke_test.py`, `feature_checks.py`, and `run-unit-tests.sh` where relevant. Inspect their current interfaces and dependency installation options. The unit-test runner manages its own fresh test copies and compatible phpBB/PHPUnit checkout; that is distinct from manually copying an interactive board. Preserve a required `tests/functional/` directory when the framework enumerates it.
 
 Provision supported database cases rather than calling a SQLite pass universal. Run guest/admin routes, real ACP/MCP/UCP actions, cron, permissions, and disable/purge/enable lifecycle cases that the change affects. Add reusable feature checks to the committed harness when appropriate. Do not let a green lint/EPV run stand in for runtime evidence.

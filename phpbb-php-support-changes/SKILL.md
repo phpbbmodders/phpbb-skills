@@ -88,6 +88,11 @@ copies to supplement a GitHub revision.
 
 ## Verify and finish
 
+Before opening the pull request, enable the extension on a running board on a
+supported PHP version, following the
+[phpbb-test-boards](../phpbb-test-boards/SKILL.md) workflow. Lint and source
+checks alone are not enough.
+
 Run the project's relevant support/enablement tests and normal required CI.
 Recheck retained dependency/conflict/DOM/cURL guards and any intentionally
 preserved phpBB ceiling. Exercise boundary failures far enough to prove the

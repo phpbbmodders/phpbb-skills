@@ -65,6 +65,8 @@ If already cloned, just make sure `upstream` is fetched fresh before branching (
    ```
    If phpcs reports anything, diff it against the *unmodified* file on the target branch (`git show upstream/<branch>:<path> > /tmp/x.php && phpcs ... /tmp/x.php`) before treating it as a real problem — several core files carry long-standing pre-existing warnings (non-namespaced legacy classes, etc.) unrelated to any given change. Only new findings introduced by your diff matter.
 
+   Then fire the event on a running board before opening the PR: a small test listener that subscribes to it (and, for a template event, an event template that prints a marker) on a disposable board of the target branch, following the [phpbb-test-boards](../phpbb-test-boards/SKILL.md) workflow. Lint and phpcs alone do not show that the event fires or that its variables can be changed.
+
 5. **Commit** with the exact three-part format phpBB's tooling parses to auto-link the commit to the ticket:
    ```
    [ticket/<id>] <short title, matches ticket summary, <79 chars>
