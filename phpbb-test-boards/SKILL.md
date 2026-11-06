@@ -21,7 +21,11 @@ Test every code change on a running board before opening its pull request, not a
 
 Use committed `smoke_test.py`, `feature_checks.py`, and `run-unit-tests.sh` where relevant. Inspect their current interfaces and dependency installation options. The unit-test runner manages its own fresh test copies and compatible phpBB/PHPUnit checkout; that is distinct from manually copying an interactive board. Preserve a required `tests/functional/` directory when the framework enumerates it.
 
-Provision supported database cases rather than calling a SQLite pass universal. Run guest/admin routes, real ACP/MCP/UCP actions, cron, permissions, and disable/purge/enable lifecycle cases that the change affects. Add reusable feature checks to the committed harness when appropriate. Do not let a green lint/EPV run stand in for runtime evidence.
+Before opening a pull request with a phpBB extension code change, run the affected behavior on every supported phpBB branch and database combination. The required databases are SQLite, MySQL, MariaDB, PostgreSQL, and Microsoft SQL Server (MSSQL). Exclude Oracle from the standard matrix. For an extension supporting phpBB 3.3 and 4.0, this is ten board cases. Treat a SQLite run as an initial check.
+
+Use `phpbb-test-board/db-matrix.sh` and an extension-specific feature check for the actual behavior. A skipped feature check does not satisfy the matrix. Use disposable databases and bind container ports to loopback. For SQL Server Developer, use `ACCEPT_EULA=Y` only with recorded user approval covering that environment. Reuse existing standing approval where applicable.
+
+Run guest/admin routes, real ACP/MCP/UCP actions, cron, permissions, and disable/purge/enable lifecycle cases that the change affects. Add reusable feature checks to the committed harness when appropriate. Do not let a green lint/EPV run stand in for runtime evidence.
 
 Purge through seed-forum or the correct board owner when CLI cannot remove web-owned cache. For `php -S`, disable opcache in the disposable test runtime. Empty pages may hide PHP fatals: inspect response bodies and logs before diagnosing flakiness. Wait for phpBB's form timing/CSRF requirements before submitting browser forms.
 
