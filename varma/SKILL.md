@@ -59,7 +59,7 @@ Step notes:
 
 - Show every pull request body, issue or PR comment and forum post in full, and get approval before posting it. Check the live text after posting.
 - Merge only when the user says so, after CI passes.
-- Never bump the version for a release, tag, publish or refresh a release package as part of a pass. Note it as a decision for the user. A development version such as `x.y.z-dev` that marks a vendor change may be proposed in the plan.
+- Running varma is the user's go-ahead to publish or refresh the extension's rolling development build (`x.y.z-dev`) once the pass's pull requests are merged, so the announcement or update has a download; follow [releases](../phpbb-extension-releases/SKILL.md). Setting a development version when none is set yet, such as after a vendor change, is part of that. A stable version number, tag or release is still the user's decision: note it, do not do it.
 - Remove the test boards after the last merge.
 
 ## 5. Report
