@@ -23,3 +23,5 @@ close-update-post	phpbb-development-topics	Write the phpBB.com forum update post
 close-new-event	phpbb-event-rfc-to-pr	My extension needs a new template event in viewtopic_body.html; write the request for phpBB.
 close-php-floor	phpbb-php-support-changes	Raise the minimum PHP version to 8.1 across all phpbbmodders extensions.
 close-danish-terms	phpbb-docs-translations	Check the Danish wording in phpbbdocs against the phpBB Danish language pack terminology.
+clear-varma	varma	/varma phpbbmodders/hidebots
+close-varma-full-pass	varma	Give the separatebots extension the usual full treatment: whatever it needs, from revendoring to the forum update.

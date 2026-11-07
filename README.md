@@ -21,6 +21,7 @@ Each folder is a skill: a `SKILL.md` with instructions an AI coding agent loads 
 | [phpbb-development-topics](phpbb-development-topics/SKILL.md) | phpBB.com development topic announcements and update posts. |
 | [phpbb-extension-adoption](phpbb-extension-adoption/SKILL.md) | Taking over an extension or changing its vendor without breaking existing installs. |
 | [phpbb-export-verification](phpbb-export-verification/SKILL.md) | Checking personal data exports and static archives before release. |
+| [varma](varma/SKILL.md) | A full pass over one extension that does only what it needs: revendor, baseline, modernize, PRs and issues, validation, accessibility, board tests, language packs, screenshots, wiki and the forum update. Type `/varma <extension>`. |
 
 ### Accessibility
 
