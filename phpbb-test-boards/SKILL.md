@@ -21,7 +21,7 @@ Test every code change on a running board before opening its pull request, not a
 
 Use committed `smoke_test.py`, `feature_checks.py`, and `run-unit-tests.sh` where relevant. Inspect their current interfaces and dependency installation options. The unit-test runner manages its own fresh test copies and compatible phpBB/PHPUnit checkout; that is distinct from manually copying an interactive board. Preserve a required `tests/functional/` directory when the framework enumerates it.
 
-Provision supported database cases rather than calling a SQLite pass universal. Run guest/admin routes, real ACP/MCP/UCP actions, cron, permissions, and disable/purge/enable lifecycle cases that the change affects. Add reusable feature checks to the committed harness when appropriate. Do not let a green lint/EPV run stand in for runtime evidence.
+Provision supported database cases rather than calling a SQLite pass universal. The supported matrix is MySQL/MariaDB, PostgreSQL, SQLite and MSSQL. phpBB is dropping Oracle, so extensions do not support, test or write Oracle-specific code for it; do not list it as an untested gap either. Run guest/admin routes, real ACP/MCP/UCP actions, cron, permissions, and disable/purge/enable lifecycle cases that the change affects. Add reusable feature checks to the committed harness when appropriate. Do not let a green lint/EPV run stand in for runtime evidence.
 
 Purge through seed-forum or the correct board owner when CLI cannot remove web-owned cache. For `php -S`, disable opcache in the disposable test runtime. Empty pages may hide PHP fatals: inspect response bodies and logs before diagnosing flakiness. Wait for phpBB's form timing/CSRF requirements before submitting browser forms.
 
