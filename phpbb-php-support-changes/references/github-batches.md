@@ -54,7 +54,8 @@ create a duplicate commit because a PR refresh is delayed.
   assume one PHP-floor repair fixes every extension's custom support tests.
 - If a bounded CI wait expires, preserve the pending state and restore any
   authorized temporary archive changes; do not claim the batch complete.
-- Follow Codex Process Jobs lifecycle instructions when available. A background
+- Follow the available job-management lifecycle instructions when applicable;
+  do not assume Codex-specific job tools are available in Claude. A background
   job may report an earlier failing head after a separate repair has merged.
   Reconcile final counts against live PR states and current heads before
   reporting overall completion.
